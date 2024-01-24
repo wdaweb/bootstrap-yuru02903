@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.css'/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="./css/slicknav.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Jost', sans-serif;
+    }
+    
+    a {
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    #navigation {
+      padding: 20px 0;
+    }
+
+    .navbar-fixed {
+      z-index: 999;
+      position: fixed;
+      opacity: .98;
+      width: 100%;
+      padding: 20px 0;
+      top: 0;
+      -webkit-animation: fadeInDown 800ms;
+      animation: fadeInDown 800ms;
+      border-radius: 0px;
+      background: #232a34;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.07);
+    }
+
+    .site-logo img {
+      width: 150px;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    #main-menu {
+      margin-top: 12px;
+    }
+
+    #main-menu ul {
+      list-style-type: none;
+    }
+
+    #main-menu ul li {
+      display: inline-block;
+      padding: 0px 12px;
+      position: relative;
+    }
+
+    #mobile_menu {
+      display: none;
+    }
+
+    @media only screen and (max-width: 767px) {
+      .bg-faded {
+        background-color: #232a34;
+      }
+      #main-menu {
+        display: none;
+      }
+      #mobile_menu {
+        display: block;
+        width: 100%;
+      }
+      .slicknav_menu {
+        font-size: 15px;
+        box-sizing: border-box;
+        background: transparent;
+        padding: 0;
+        margin-top: 10px;
+      }
+    }
+
+    .slicknav_menu:before {
+      content: " ";
+      display: table;
+    }
+
+    .slicknav_menu .slicknav_icon:before {
+      background: transparent;
+      width: 1.125em;
+      height: 0.875em;
+      display: block;
+      content: "\e68e";
+      position: absolute;
+      font-family: 'themify';
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .slicknav_nav_icon {
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .slicknav_menu:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+
+
+    #home {
+      height: 700px;
+      position: relative;
+      z-index: 0;
+      background-image: url(./images/1.bg/bg-1.jpg);
+      background-size: cover;
+      background-position: 50% -35px;
+      background-attachment:fixed;
+    }
+
+    #home::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
+      content: "";
+      left: 0;
+      top: 0;
+    }
+
+    .hero-text {
+      padding-top: 250px;
+      color: #fff;
+      position: relative;
+    }
+
+    .hero-text h1 {
+      font-size: 70px;
+      font-weight: 900;
+    }
+
+    .hero-text p {
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+    .hero-text a {
+      color: #fff;
+      border: 3px solid #fff;
+      border-radius: 500px;
+      font-size: 14px;
+      padding: 12px 40px;
+      position: relative;
+    }
+    section {
+      padding: 60px 0;
+      box-sizing: border-box;
+    }
+
+    .section-title {
+      margin-bottom: 60px;
+    }
+
+    .section-title h1 {
+      font-size: 44px;
+      font-weight: 700;
+      margin-top: 0;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    .section-title span {
+      background: #72c02c none repeat scroll 0 0;
+      display: block;
+      height: 2px;
+      margin: 10px auto;
+      width: 100px;
+    }
+
+    .section-title p {
+      padding: 0 10px;
+      width: 60%;
+      margin: auto;
+    }
+
+    .serviceBox {
+      position: relative;
+      background: #fff;
+      box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+      padding: 40px;
+      border-radius: 5px;
+      margin-bottom: 40px;
+    }
+    .serviceBox .title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 15px;
+      text-transform: capitalize;
+    }
+    .our-team .social {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 35px;
+      text-align: center;
+      opacity: 0;
+      position: absolute;
+      bottom: 35px;
+      transition: all 0.3s ease 0s;
+    }
+
+    .our-team .icon {
+      background: #72c02c none repeat scroll 0 0;
+      bottom: 0;
+      color: #fff;
+      height: 35px;
+      left: 0;
+      line-height: 35px;
+      position: absolute;
+      text-align: center;
+      width: 35px;
+    }
+    .fa {
+      font: normal normal normal 14px/1 FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      display: var(--fa-display, inline-block);
+    }
+
+
+    ::marker {
+      unicode-bidi: isolate;
+      font-variant-numeric: tabular-nums;
+      text-transform: none;
+      text-indent: 0px !important;
+      text-align: start !important;
+      text-align-last: start !important;
+    }
+
+    #work .container {
+      overflow-x: hidden;
+
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper-pagination {
+      position: relative;
+      margin-top: 1.5rem;
+    }
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      text-align: center;
+      line-height: 12px;
+      opacity: 0.5;
+      background: #72c02c;
+      margin: 5px 7px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+      color: #fff;
+      background: #72c02c;
+      opacity: 1;
+      
+    }
+
+    .single_gallery {
+      margin: 0 10px;
+      position: relative;
+    }
+
+    .img-gallery {
+      width: 100%;
+    }
+
+    .gallery_overlay {
+      background: rgba(0, 0, 0, 0.3);
+      bottom: 0;
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      transition: all 0.3s ease 0s;
+      width: 100%;
+    }
+
+    .gallery_info {
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      padding: 20px 0;
+      position: absolute;
+      right: 0;
+      text-align: center;
+      color: #fff;
+    }
+
+    .gallery_info h1 {
+      font-weight: 700;
+      font-size: 30px;
+      margin-bottom: 0px;
+    }
+
+    #footer {
+      background-image: url(./images/1.bg/bg-4.jpg);
+      background-size:cover;
+      background-position: center center;
+      background-attachment:fixed;
+    }
+
+
+    .address {
+      background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+      padding: 60px 30px;
+      color: #f2f2f2;
+    }
+
+    .address h2 {
+      font-size: 40px;
+      position: relative;
+    }
+
+    .address h1 {
+      font-size: 60px;
+      font-weight: 800;
+    }
+
+    .footer_copyright p {
+      margin: 20px;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      text-transform: capitalize;
+    }
+
+
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <div id="navigation" class="fixed-top navbar-light bg-faded site-navigation navbar-fixed">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-4">
+          <div class="site-logo">
+            <a class="navbar-logo" href="index.html"><img src="./images/logo.png" alt=""></a>
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-9 col-sm-8">
+          <div class="float-end">
+            <nav id="main-menu" class="ml-auto">
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">team</a></li>
+                <li><a href="#process">process</a></li>
+                <li><a href="#work">work</a></li>
+                <li><a href="#pricing">pricing</a></li>								  
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </nav>
+            <div id="mobile_menu"><div class="slicknav_menu"><a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt"></span><span class="slicknav_icon slicknav_no-text"><span class="slicknav_nav_icon icofont-navigation-menu"></span></span></a><nav class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
+              <ul>
+                <li><a href="#home" role="menuitem">Home</a></li>
+                <li><a href="#about" role="menuitem">About</a></li>
+                <li><a href="#team" role="menuitem">team</a></li>
+                <li><a href="#process" role="menuitem">process</a></li>
+                <li><a href="#work" role="menuitem">work</a></li>
+                <li><a href="#pricing" role="menuitem">pricing</a></li>								  
+                <li><a href="#contact" role="menuitem">Contact</a></li>
+              </ul>
+            </nav></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- section1：套件-jquery-ripples -->
+  <section data-stellar-background-ratio="0.3" id="home" class=" ripple jquery-ripples py-sm-0" >			
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="hero-text">
+            <h1>WELCOME TO ORANGE</h1>
+            <p>A Theme for Creatives &amp; Agencies.</p>
+            <a href="#contact" class="page-scroll  btn-default btn-home-bg">CONTACT US</a>						
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- section2：套件-aos -->
+  <section >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-title">
+            <h1>PERFECT FOR CREATIVES &amp; AGENCIES</h1>
+            <span></span>
+            <p>This template is perfect for Creatives &amp; Agencies</p>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-3 col-sm-6 col-xs-12 aos-animate" data-aos="fade-up">
+          <div class="serviceBox">
+            <h3 class="title">Online Marketing</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, mollitia dolorum nobis earum nesciunt itaque!</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12 aos-animate" data-aos="fade-up">
+          <div class="serviceBox">
+            <h3 class="title">Digital Experience</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, mollitia dolorum nobis earum nesciunt itaque!</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12 aos-animate" data-aos="fade-up">
+          <div class="serviceBox">
+            <h3 class="title">Consulting</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, mollitia dolorum nobis earum nesciunt itaque!</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12 aos-animate" data-aos="fade-up">
+          <div class="serviceBox">
+            <h3 class="title">Branding</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, mollitia dolorum nobis earum nesciunt itaque!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- section3：套件-swiper -->
+  <section id="work" class="our_work section-padding">
+    <div class="container overflow-hidden">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-title text-center">
+            <h1>Recent projects</h1>
+            <span></span>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper mySwiper aos-animate" data-aos="fade-up">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="single_gallery">
+              <img src="./images/3.project/project-1.jpg" class="img-gallery" alt="">
+              <div class="gallery_overlay"></div>
+              <div class="gallery_info">
+                <h1>APP LANDING</h1>
+                <p>Branding , Design</p>
+                <a href="single_project.html">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="single_gallery">
+              <img src="./images/3.project/project-2.jpg" class="img-gallery" alt="">
+              <div class="gallery_overlay"></div>
+              <div class="gallery_info">
+                <h1>APP LANDING</h1>
+                <p>Branding , Design</p>
+                <a href="single_project.html">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+              <div class="single_gallery">
+              <img src="./images/3.project/project-3.jpg" class="img-gallery" alt="">
+              <div class="gallery_overlay"></div>
+              <div class="gallery_info">
+                <h1>APP LANDING</h1>
+                <p>Branding , Design</p>
+                <a href="single_project.html">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+              <div class="single_gallery">
+              <img src="./images/3.project/project-4.jpg" class="img-gallery" alt="">
+              <div class="gallery_overlay"></div>
+              <div class="gallery_info">
+                <h1>APP LANDING</h1>
+                <p>Branding , Design</p>
+                <a href="single_project.html">View Project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="footer" class="contact-address section-padding" >
+    <div class="container">
+      <div class="row">
+        <div class="offset-lg-3 text-center col-xs-12 col-lg-6">
+          <div class="address">
+            <h2>example@example.com</h2>
+            <h1>1234-123-123</h1>
+            <h2>2481 Melrose Place, Beverly Hills CA 90210</h2>
+          </div>
+          <div class="footer_copyright">
+            <p>© 2023 orange. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js' integrity='sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==' crossorigin='anonymous'></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="./js/jquery.slicknav.js"></script>
+  <script src="./js/bootstrap.bundle.js"></script>
+  <script src="./js/jquery.ripples.js"></script>
+
+  <script>
+    AOS.init()
+    $("#home").ripples({
+      resolution: 512,
+      dropRadius: 25,
+      perturbance: 0.01,
+    });
+
+
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 2,
+      // spaceBetween: 5,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
+  </script>
+</body>
+</html>
